@@ -1,4 +1,4 @@
-module github.com/netcracker/qubership-core-lib-go-maas-bg-kafka/v3
+module github.com/netcracker/qubership-core-lib-go-bg-kafka/v3
 
 go 1.22
 
