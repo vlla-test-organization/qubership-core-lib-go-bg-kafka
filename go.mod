@@ -5,9 +5,9 @@ go 1.22
 require (
 	github.com/docker/go-connections v0.5.0
 	github.com/golang/mock v1.6.0
-	github.com/netcracker/qubership-core-lib-go-bg-state-monitor/v2 v2.0.0-20250324180319-160b98a83248
-	github.com/netcracker/qubership-core-lib-go-rest-utils/v2 v2.0.0-20250324140029-6e57c35680eb
-	github.com/netcracker/qubership-core-lib-go/v3 v3.0.0-20250324061806-227fc2609b0a
+	github.com/netcracker/qubership-core-lib-go-bg-state-monitor/v2 v2.0.0-20250410105207-ba4bfd983c8d
+	github.com/netcracker/qubership-core-lib-go-rest-utils/v2 v2.0.0-20250410090425-f8bcf3d43e4a
+	github.com/netcracker/qubership-core-lib-go/v3 v3.0.0-20250410090100-eded4c69a462
 	github.com/stretchr/testify v1.10.0
 	github.com/testcontainers/testcontainers-go v0.35.0
 	github.com/testcontainers/testcontainers-go/modules/kafka v0.35.0
