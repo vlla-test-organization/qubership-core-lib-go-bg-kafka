@@ -10,6 +10,7 @@ import (
 type Message interface {
 	Topic() string
 	Offset() int64
+	HighWaterMark() int64
 	Headers() []Header
 	Key() []byte
 	Value() []byte

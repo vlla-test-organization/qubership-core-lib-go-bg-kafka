@@ -49,6 +49,20 @@ func (mr *MockMessageMockRecorder) Headers() *gomock.Call {
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Headers", reflect.TypeOf((*MockMessage)(nil).Headers))
 }
 
+// HighWaterMark mocks base method.
+func (m *MockMessage) HighWaterMark() int64 {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "HighWaterMark")
+	ret0, _ := ret[0].(int64)
+	return ret0
+}
+
+// HighWaterMark indicates an expected call of HighWaterMark.
+func (mr *MockMessageMockRecorder) HighWaterMark() *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "HighWaterMark", reflect.TypeOf((*MockMessage)(nil).HighWaterMark))
+}
+
 // Key mocks base method.
 func (m *MockMessage) Key() []byte {
 	m.ctrl.T.Helper()

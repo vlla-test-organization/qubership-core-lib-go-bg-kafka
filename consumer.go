@@ -30,6 +30,7 @@ type BgConsumer struct {
 	bgStateActive  *bgMonitor.BlueGreenState
 	versionFilter  *Filter
 	pollMux        *sync.Mutex
+	metrics        *Metrics
 }
 
 func NewConsumer(ctx context.Context, topic, groupIdPrefix string,
@@ -68,6 +69,7 @@ func NewConsumer(ctx context.Context, topic, groupIdPrefix string,
 		bgStateChange:  &atomic.Pointer[bgMonitor.BlueGreenState]{},
 		statePublisher: statePublisher,
 		pollMux:        &sync.Mutex{},
+		metrics:        NewConsumerMetrics(topic),
 	}
 	readyChan := make(chan struct{}, 1)
 	once := &sync.Once{}
@@ -81,7 +83,7 @@ func NewConsumer(ctx context.Context, topic, groupIdPrefix string,
 	go func() {
 		select {
 		case <-ctx.Done():
-			logger.InfoC(ctx, "Cxt is done, closing bgConsumer")
+			logger.InfoC(ctx, "Ctx is done, closing bgConsumer")
 			bgConsumer.consumer.Close()
 		}
 	}()
@@ -128,7 +130,16 @@ func (c *BgConsumer) Commit(ctx context.Context, marker *CommitMarker) error {
 	}
 	if current != nil && *current == marker.Version {
 		logger.DebugC(ctx, "Committing message with marker: %s", marker.String())
-		return c.consumer.Commit(ctx, marker)
+		if err := c.consumer.Commit(ctx, marker); err != nil {
+			return fmt.Errorf("failed to commit offset: %w", err)
+		}
+
+		c.metrics.updateMetricsOnCommit(&commitMetricsUpdate{
+			partition:    marker.TopicPartition.Partition,
+			commitOffset: marker.OffsetAndMeta.Offset,
+		})
+
+		return nil
 	}
 	logger.WarnC(ctx, "Ignoring commit of message with marker: %s"+
 		"current bg state's version: %s", marker.String(), current.String())
@@ -179,6 +190,13 @@ func (c *BgConsumer) Poll(ctx context.Context, readTimeout time.Duration) (*Reco
 		// invalid version format
 		return nil, fmt.Errorf("invalid '%s' value format: %s", xversion.X_VERSION_HEADER_NAME, xVer)
 	}
+
+	c.metrics.updateMetricsOnPoll(&pollMetricsUpdate{
+		partition:     msg.Partition(),
+		highWaterMark: msg.HighWaterMark(),
+		currentOffset: msg.Offset(),
+		isAccepted:    accepted,
+	})
 	if accepted {
 		logger.DebugC(ctx, "Message (key='%s') '%s'='%s' is accepted by the filter", msgKey, xversion.X_VERSION_HEADER_NAME, xVer)
 		return &Record{Message: msg, Marker: &marker}, nil
@@ -186,6 +204,11 @@ func (c *BgConsumer) Poll(ctx context.Context, readTimeout time.Duration) (*Reco
 		logger.DebugC(ctx, "Message (key='%s') '%s'='%s' is declined by the filter", msgKey, xversion.X_VERSION_HEADER_NAME, xVer)
 		return &Record{Message: nil, Marker: &marker}, nil
 	}
+}
+
+// Stats returns blue-green kafka consumer metrics snapshot
+func (c *BgConsumer) Stats() Metrics {
+	return c.metrics.snapshot()
 }
 
 func (c *BgConsumer) reinitializeConsumer(ctx context.Context, bgState bgMonitor.BlueGreenState,
@@ -221,6 +244,7 @@ func (c *BgConsumer) reinitializeConsumer(ctx context.Context, bgState bgMonitor
 	if err != nil {
 		return nil, nil, err
 	}
+	c.metrics.clean()
 	return consumer, versionFilter, nil
 }
 
