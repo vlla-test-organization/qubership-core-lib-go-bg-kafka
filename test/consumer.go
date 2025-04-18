@@ -119,11 +119,27 @@ func RunBGConsumerTest(t *testing.T, topic string,
 	assertions.Equal("order#2", string(record2A.Message.Value()))
 	assertions.Equal("order#3", string(record3A.Message.Value()))
 
+	metrics := consumerActive.Stats()
+	assertions.Equal(int64(3), metrics.HighWatermark.GetByPartitions()[0])
+	assertions.Equal(int64(2), metrics.LastPollOffset.GetByPartitions()[0])
+	assertions.Equal(int64(3), metrics.Lag.GetByPartitions()[0])
+	assertions.Equal(int64(3), metrics.ConsumedMessageCount.GetByPartitions()[0])
+	_, commitOffsetExists := metrics.CommitOffset.GetByPartitions()[0]
+	assertions.False(commitOffsetExists)
+
 	// commit only first record offset
 	assertions.NotNil(record1A.Marker)
 	err = consumerActive.Commit(ctx, record1A.Marker)
 	assertions.NoError(err)
 	dumpOffsets(ctx, admin)
+
+	metrics = consumerActive.Stats()
+	assertions.Equal(int64(3), metrics.HighWatermark.GetByPartitions()[0])
+	assertions.Equal(int64(2), metrics.LastPollOffset.GetByPartitions()[0])
+	assertions.Equal(int64(0), metrics.CommitOffset.GetByPartitions()[0])
+	assertions.Equal(int64(2), metrics.Lag.GetByPartitions()[0])
+	assertions.Equal(int64(3), metrics.ConsumedMessageCount.GetByPartitions()[0])
+	assertions.Equal(int64(1), metrics.CommitCount.GetByPartitions()[0])
 
 	logger.InfoC(ctx, " =========================================================================")
 	logger.InfoC(ctx, " poll from candidate consumer")
@@ -243,13 +259,14 @@ func writeMessage(assertions *require.Assertions, ctx context.Context, writer Wr
 }
 
 type KafkaMsg struct {
-	topic     string
-	offset    int64
-	headers   []bgKafka.Header
-	key       []byte
-	value     []byte
-	partition int
-	nativeMsg any
+	topic         string
+	offset        int64
+	highWaterMark int64
+	headers       []bgKafka.Header
+	key           []byte
+	value         []byte
+	partition     int
+	nativeMsg     any
 }
 
 func (k KafkaMsg) Topic() string {
@@ -278,6 +295,10 @@ func (k KafkaMsg) Partition() int {
 
 func (k KafkaMsg) NativeMsg() any {
 	return k.nativeMsg
+}
+
+func (k KafkaMsg) HighWaterMark() int64 {
+	return k.highWaterMark
 }
 
 func newMessage(key, value string, headers ...bgKafka.Header) bgKafka.Message {

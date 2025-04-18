@@ -4,9 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/docker/go-connections/nat"
-	"github.com/testcontainers/testcontainers-go"
 	"github.com/testcontainers/testcontainers-go/modules/kafka"
-	"net/url"
 	"os"
 	"testing"
 )
@@ -31,18 +29,10 @@ func setTestDocker(t *testing.T) {
 func StartContainers(t *testing.T) ([]string, error) {
 	ctx := context.Background()
 	setTestDocker(t)
-	kafkaHost := "127.0.0.1"
-	if dockerHost := os.Getenv("DOCKER_HOST"); dockerHost != "" {
-		dockerUrl, err := url.Parse(dockerHost)
-		if err != nil {
-			return nil, err
-		}
-		kafkaHost = dockerUrl.Hostname()
-		t.Logf("found DOCKER_HOST='%s'. Setting kafkaHost='%s'", dockerHost, kafkaHost)
-	}
-	kafkaContainer, err := kafka.RunContainer(ctx,
+
+	kafkaContainer, err := kafka.Run(ctx,
+		"confluentinc/confluent-local:7.5.0",
 		kafka.WithClusterID("test-cluster"),
-		testcontainers.WithImage("confluentinc/confluent-local:7.5.0"),
 	)
 	if err != nil {
 		return nil, err
