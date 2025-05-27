@@ -1,6 +1,6 @@
 module github.com/netcracker/qubership-core-lib-go-bg-kafka/v3
 
-go 1.22
+go 1.23
 
 require (
 	github.com/docker/go-connections v0.5.0
