@@ -2,7 +2,7 @@ package blue_green_kafka
 
 import (
 	"context"
-	bgMonitor "github.com/netcracker/qubership-core-lib-go-bg-state-monitor/v2"
+	bgMonitor "github.com/vlla-test-organization/qubership-core-lib-go-bg-state-monitor/v2"
 )
 
 func GuaranteeConsistencyStrategy() OffsetInheritanceStrategy {

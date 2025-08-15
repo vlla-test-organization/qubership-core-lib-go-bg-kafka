@@ -7,14 +7,14 @@ import (
 	"testing"
 	"time"
 
-	bgKafka "github.com/netcracker/qubership-core-lib-go-bg-kafka/v3"
-	bgStateMonitor "github.com/netcracker/qubership-core-lib-go-bg-state-monitor/v2"
-	"github.com/netcracker/qubership-core-lib-go/v3/configloader"
-	"github.com/netcracker/qubership-core-lib-go/v3/context-propagation/baseproviders"
-	"github.com/netcracker/qubership-core-lib-go/v3/context-propagation/baseproviders/xversion"
-	"github.com/netcracker/qubership-core-lib-go/v3/context-propagation/ctxmanager"
-	"github.com/netcracker/qubership-core-lib-go/v3/logging"
 	"github.com/stretchr/testify/require"
+	bgKafka "github.com/vlla-test-organization/qubership-core-lib-go-bg-kafka/v3"
+	bgStateMonitor "github.com/vlla-test-organization/qubership-core-lib-go-bg-state-monitor/v2"
+	"github.com/vlla-test-organization/qubership-core-lib-go/v3/configloader"
+	"github.com/vlla-test-organization/qubership-core-lib-go/v3/context-propagation/baseproviders"
+	"github.com/vlla-test-organization/qubership-core-lib-go/v3/context-propagation/baseproviders/xversion"
+	"github.com/vlla-test-organization/qubership-core-lib-go/v3/context-propagation/ctxmanager"
+	"github.com/vlla-test-organization/qubership-core-lib-go/v3/logging"
 )
 
 var logger logging.Logger

@@ -9,9 +9,9 @@ import (
 	"sync/atomic"
 	"time"
 
-	bgMonitor "github.com/netcracker/qubership-core-lib-go-bg-state-monitor/v2"
-	"github.com/netcracker/qubership-core-lib-go/v3/context-propagation/baseproviders/xversion"
-	"github.com/netcracker/qubership-core-lib-go/v3/logging"
+	bgMonitor "github.com/vlla-test-organization/qubership-core-lib-go-bg-state-monitor/v2"
+	"github.com/vlla-test-organization/qubership-core-lib-go/v3/context-propagation/baseproviders/xversion"
+	"github.com/vlla-test-organization/qubership-core-lib-go/v3/logging"
 )
 
 var logger logging.Logger

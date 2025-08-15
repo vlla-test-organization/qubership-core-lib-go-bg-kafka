@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/netcracker/qubership-core-lib-go-rest-utils/v2/consul-propertysource"
-	"github.com/netcracker/qubership-core-lib-go/v3/configloader"
-	"github.com/netcracker/qubership-core-lib-go/v3/security"
-	"github.com/netcracker/qubership-core-lib-go/v3/serviceloader"
+	"github.com/vlla-test-organization/qubership-core-lib-go-rest-utils/v2/consul-propertysource"
+	"github.com/vlla-test-organization/qubership-core-lib-go/v3/configloader"
+	"github.com/vlla-test-organization/qubership-core-lib-go/v3/security"
+	"github.com/vlla-test-organization/qubership-core-lib-go/v3/serviceloader"
 )
 
 type BgKafkaConsumerConfig struct {
@@ -76,7 +76,7 @@ func getConsulUrl() string {
 
 func getAuthSupplier() func(ctx context.Context) (string, error) {
 	return func(ctx context.Context) (string, error) {
-	    tokenProvider := serviceloader.MustLoad[security.TokenProvider]()
+		tokenProvider := serviceloader.MustLoad[security.TokenProvider]()
 		return tokenProvider.GetToken(ctx)
 	}
 }

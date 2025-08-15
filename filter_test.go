@@ -2,8 +2,8 @@ package blue_green_kafka
 
 import (
 	"context"
-	bgMonitor "github.com/netcracker/qubership-core-lib-go-bg-state-monitor/v2"
 	"github.com/stretchr/testify/require"
+	bgMonitor "github.com/vlla-test-organization/qubership-core-lib-go-bg-state-monitor/v2"
 	"testing"
 	"time"
 )

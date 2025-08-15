@@ -1,4 +1,4 @@
-module github.com/netcracker/qubership-core-lib-go-bg-kafka/v3
+module github.com/vlla-test-organization/qubership-core-lib-go-bg-kafka/v3
 
 go 1.23.0
 
@@ -7,9 +7,9 @@ toolchain go1.24.5
 require (
 	github.com/docker/go-connections v0.5.0
 	github.com/golang/mock v1.6.0
-	github.com/netcracker/qubership-core-lib-go-bg-state-monitor/v2 v2.0.1
-	github.com/netcracker/qubership-core-lib-go-rest-utils/v2 v2.0.1
-	github.com/netcracker/qubership-core-lib-go/v3 v3.0.1
+	github.com/vlla-test-organization/qubership-core-lib-go-bg-state-monitor/v2 v2.0.1
+	github.com/vlla-test-organization/qubership-core-lib-go-rest-utils/v2 v2.0.1
+	github.com/vlla-test-organization/qubership-core-lib-go/v3 v3.0.1
 	github.com/stretchr/testify v1.10.0
 	github.com/testcontainers/testcontainers-go/modules/kafka v0.35.0
 )
