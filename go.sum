@@ -317,6 +317,12 @@ github.com/tklauser/numcpus v0.6.1/go.mod h1:1XfjsgE2zo8GVw7POkMbHENHzVg3GzmoZ9f
 github.com/tv42/httpunix v0.0.0-20150427012821-b75d8614f926/go.mod h1:9ESjWnEqriFuLhtthL60Sar/7RFoluCcXsuvEwTV5KM=
 github.com/viney-shih/go-lock v1.1.2 h1:3TdGTiHZCPqBdTvFbQZQN/TRZzKF3KWw2rFEyKz3YqA=
 github.com/viney-shih/go-lock v1.1.2/go.mod h1:Yijm78Ljteb3kRiJrbLAxVntkUukGu5uzSxq/xV7OO8=
+github.com/vlla-test-organization/qubership-core-lib-go-bg-state-monitor/v2 v2.0.4 h1:iMuM+T4HwPEfVDSWE5R8sq7SEWkDD1Z9vAX9T12qua4=
+github.com/vlla-test-organization/qubership-core-lib-go-bg-state-monitor/v2 v2.0.4/go.mod h1:j54JbUaquPHcecVEJnJTPmRbZMCy23x+zGQ8Wqo859w=
+github.com/vlla-test-organization/qubership-core-lib-go-rest-utils/v2 v2.0.4 h1:OtaXZsbh9zg3G/1XcHaS9McI6IQTG8nm++N43rvVPOg=
+github.com/vlla-test-organization/qubership-core-lib-go-rest-utils/v2 v2.0.4/go.mod h1:b/aQP+Mxbx2T1xY3coJ4td0wm9mupSoXVBbHX16mItY=
+github.com/vlla-test-organization/qubership-core-lib-go/v3 v3.0.4 h1:ZtcEm3ivx7E+UxXpFc3VxTdsIvKU5DNh0dhVf2clME8=
+github.com/vlla-test-organization/qubership-core-lib-go/v3 v3.0.4/go.mod h1:DC6VVLa4r2LxfPMoEn9WmQEdasR61DB5eEtJnIGRyXw=
 github.com/yuin/goldmark v1.1.27/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.2.1/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.3.5/go.mod h1:mwnBkeHKe2W/ZEtQ+71ViKU8L12m81fl3OWwC1Zlc8k=
