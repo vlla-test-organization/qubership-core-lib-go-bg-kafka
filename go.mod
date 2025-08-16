@@ -11,9 +11,9 @@ retract (
 require (
 	github.com/docker/go-connections v0.5.0
 	github.com/golang/mock v1.6.0
-	github.com/vlla-test-organization/qubership-core-lib-go-bg-state-monitor/v2 v2.0.2
-	github.com/vlla-test-organization/qubership-core-lib-go-rest-utils/v2 v2.0.2
-	github.com/vlla-test-organization/qubership-core-lib-go/v3 v3.0.2
+	github.com/vlla-test-organization/qubership-core-lib-go-bg-state-monitor/v2 v2.0.3
+	github.com/vlla-test-organization/qubership-core-lib-go-rest-utils/v2 v2.0.3
+	github.com/vlla-test-organization/qubership-core-lib-go/v3 v3.0.3
 	github.com/stretchr/testify v1.10.0
 	github.com/testcontainers/testcontainers-go/modules/kafka v0.35.0
 )
