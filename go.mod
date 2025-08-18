@@ -11,9 +11,9 @@ require (
 	github.com/golang/mock v1.6.0
 	github.com/stretchr/testify v1.10.0
 	github.com/testcontainers/testcontainers-go/modules/kafka v0.35.0
-	github.com/vlla-test-organization/qubership-core-lib-go-bg-state-monitor/v2 v2.0.6
-	github.com/vlla-test-organization/qubership-core-lib-go-rest-utils/v2 v2.0.6
-	github.com/vlla-test-organization/qubership-core-lib-go/v3 v3.0.6
+	github.com/vlla-test-organization/qubership-core-lib-go-bg-state-monitor/v2 v2.0.7
+	github.com/vlla-test-organization/qubership-core-lib-go-rest-utils/v2 v2.0.7
+	github.com/vlla-test-organization/qubership-core-lib-go/v3 v3.0.7
 )
 
 require (
