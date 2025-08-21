@@ -1,6 +1,6 @@
 module github.com/vlla-test-organization/qubership-core-lib-go-bg-kafka/v3
 
-go 1.23.0
+go 1.23
 
 toolchain go1.24.5
 
